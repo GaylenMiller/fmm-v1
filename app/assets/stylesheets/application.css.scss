@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *         = require_tree .
+ *         = require_self
+ */
+
+// Import the colors.
+@import 'kuler_sandy_stone_beach';
+
+// ** Background color for `<body>`.
+$body-bg: $kuler1;
+
+$navbar-default-color:  $kuler3;
+$navbar-default-link-hover-color: 	lighten($kuler3, 30%);
+$navbar-default-toggle-hover-bg: 	$navbar-default-link-hover-color;
+$navbar-default-brand-hover-color: 	$navbar-default-link-hover-color;
+
+$navbar-default-link-color: $navbar-default-color;
+$navbar-default-bg: $kuler4;
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+.navbar-wrapper {
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+.navbar-brand {
+	position: relative;
+	top: -42px;
+	font-size: 28px;
+
+}

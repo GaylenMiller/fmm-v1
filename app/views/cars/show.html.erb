@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @car.user_id %>
+</p>
+
+<p>
+  <strong>Vin:</strong>
+  <%= @car.vin %>
+</p>
+
+<p>
+  <strong>License state:</strong>
+  <%= @car.license_state %>
+</p>
+
+<p>
+  <strong>License number:</strong>
+  <%= @car.license_number %>
+</p>
+
+<p>
+  <strong>Distance unit:</strong>
+  <%= @car.distance_unit %>
+</p>
+
+<p>
+  <strong>Fuel unit:</strong>
+  <%= @car.fuel_unit %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @car.location_id %>
+</p>
+
+<p>
+  <strong>Model year:</strong>
+  <%= @car.model_year %>
+</p>
+
+<p>
+  <strong>Model make:</strong>
+  <%= @car.model_make %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @car.model %>
+</p>
+
+<p>
+  <strong>Model trim:</strong>
+  <%= @car.model_trim %>
+</p>
+
+<p>
+  <strong>Vehicle type:</strong>
+  <%= @car.vehicle_type %>
+</p>
+
+<p>
+  <strong>Engine:</strong>
+  <%= @car.engine %>
+</p>
+
+<p>
+  <strong>Drive type:</strong>
+  <%= @car.drive_type %>
+</p>
+
+<p>
+  <strong>Body style:</strong>
+  <%= @car.body_style %>
+</p>
+
+<p>
+  <strong>Doors:</strong>
+  <%= @car.doors %>
+</p>
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>

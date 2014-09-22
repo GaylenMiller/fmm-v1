@@ -1,0 +1,8 @@
+<%# In application.html.erb add "= render 'layouts/flash_messages' 
+     this code also requires the "bootstrap_class_for() helper " %>
+<% flash.each do |type, message| %>
+  <div class="alert <%= bootstrap_class_for(type) %> fade in">
+    <button class="close" data-dismiss="alert">×</button>
+    <%= message %>
+  </div>
+<% end %>

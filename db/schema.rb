@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921214223) do
+ActiveRecord::Schema.define(version: 20140923211841) do
 
   create_table "cars", force: true do |t|
     t.integer  "user_id",        precision: 38, scale: 0
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20140921214223) do
     t.string   "drive_type"
     t.string   "body_style"
     t.string   "doors"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "select_options", force: true do |t|
+    t.string   "domain",                                   null: false
+    t.string   "code_value",                               null: false
+    t.string   "display_value",                            null: false
+    t.integer  "display_order",   precision: 38, scale: 0
+    t.decimal  "value_as_number", precision: 11, scale: 3
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -17,4 +17,14 @@ class User < ActiveRecord::Base
 	    format: {with: /\A(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Z‌​a-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}\Z/i}
 
   validates :display_name_lower, uniqueness: true
+
+  has_many :cars
+
+  before_validation :set_display_name_lower
+
+  private
+    def set_display_name_lower
+      self.display_name_lower = (self.display_name || "").downcase
+    end
+
 end

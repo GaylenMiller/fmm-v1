@@ -18,7 +18,7 @@
 @import 'kuler_sandy_stone_beach';
 
 // ** Background color for `<body>`.
-$body-bg: $kuler3;
+$body-bg: $kuler2;
 
 $navbar-default-color:  $kuler3;
 $navbar-default-link-hover-color: 	lighten($kuler3, 30%);
@@ -26,7 +26,7 @@ $navbar-default-toggle-hover-bg: 	$navbar-default-link-hover-color;
 $navbar-default-brand-hover-color: 	$navbar-default-link-hover-color;
 
 $navbar-default-link-color: $navbar-default-color;
-$navbar-default-bg: $kuler4;
+$navbar-default-bg: $kuler5;
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
@@ -43,7 +43,7 @@ $navbar-default-bg: $kuler4;
 }
 .main-panel {
 	background-color: $kuler1;
-	border-color: $kuler4;
+	border-color: $kuler5;
 	border-top-style: solid;
 	border-top-width: 1rem;
 	border-radius: 1rem;

@@ -1,11 +1,11 @@
 class CarsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user! #, only: [:new, :create]
   before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   # GET /cars
   # GET /cars.json
   def index
-    @cars = Car.all
+    @cars = current_user.cars
   end
 
   # GET /cars/1

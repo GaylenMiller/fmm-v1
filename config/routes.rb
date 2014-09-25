@@ -8,6 +8,13 @@ Rails.application.routes.draw do
 
   root to: "static_pages#home"
 
+  devise_scope :user do
+    get "sign_in", to: "devise/sessions#new"
+    get "sign_up", to: "devise/registrations#new"
+    get "profile", to: "devise/registrations#edit"
+    get "sign_out", to: "devise/sessions#destroy"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

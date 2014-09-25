@@ -1,4 +1,4 @@
-<h1>Listing cars</h1>
+<h1>Listing cars for <%= current_user.display_name %></h1>
 
 <table>
   <thead>
@@ -7,18 +7,8 @@
       <th>Vin</th>
       <th>License state</th>
       <th>License number</th>
-      <th>Distance unit</th>
-      <th>Fuel unit</th>
       <th>Location</th>
-      <th>Model year</th>
-      <th>Model make</th>
-      <th>Model</th>
-      <th>Model trim</th>
-      <th>Vehicle type</th>
-      <th>Engine</th>
-      <th>Drive type</th>
-      <th>Body style</th>
-      <th>Doors</th>
+      <th>Model Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,22 +16,12 @@
   <tbody>
     <% @cars.each do |car| %>
       <tr>
-        <td><%= car.user_id %></td>
+        <td><%= car.user.display_name %></td>
         <td><%= car.vin %></td>
         <td><%= car.license_state %></td>
         <td><%= car.license_number %></td>
-        <td><%= car.distance_unit %></td>
-        <td><%= car.fuel_unit %></td>
         <td><%= car.location_id %></td>
-        <td><%= car.model_year %></td>
-        <td><%= car.model_make %></td>
-        <td><%= car.model %></td>
-        <td><%= car.model_trim %></td>
-        <td><%= car.vehicle_type %></td>
-        <td><%= car.engine %></td>
-        <td><%= car.drive_type %></td>
-        <td><%= car.body_style %></td>
-        <td><%= car.doors %></td>
+        <td><%= car.model_description %></td>
         <td><%= link_to 'Show', car %></td>
         <td><%= link_to 'Edit', edit_car_path(car) %></td>
         <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>

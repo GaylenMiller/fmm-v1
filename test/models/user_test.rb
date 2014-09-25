@@ -11,6 +11,7 @@ class UserTest < ActiveSupport::TestCase
   	user.display_name_lower = 'gator36a'
   	user.email = 'abcd@123.com'
   	user.password = '12345678'
+    # user.display_name = 'abc'
   	assert !user.save
   	assert !user.errors[:first_name].empty?, 'user should have an error on first name blank'
   	assert !user.errors[:last_name].empty?, 'user should have an error on last name blank'
@@ -30,9 +31,8 @@ class UserTest < ActiveSupport::TestCase
   	user = User.new
   	user.first_name = 'x'
   	user.last_name = 'x'
-  	user.display_name = 'x'
+  	user.display_name = users(:shelley).display_name
   	user.password = '12345678'
-    user.display_name_lower = users(:shelley).display_name_lower
     user.email = users(:shelley).email
   	assert !user.save
     #puts user.errors.inspect
@@ -40,5 +40,6 @@ class UserTest < ActiveSupport::TestCase
   	assert !user.errors[:display_name_lower].empty?, 'user should have an error on display name non-uniqueness'
   end
 
-	# add tests with bad emails.
+	# add tests with bad email addresses.
+
 end

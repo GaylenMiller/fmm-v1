@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
+  user: gaylen
   vin: MyString
   license_state: MyString
   license_number: MyString
@@ -19,7 +19,7 @@ one:
   doors: MyString
 
 two:
-  user_id: 1
+  user: shelley
   vin: MyString
   license_state: MyString
   license_number: MyString

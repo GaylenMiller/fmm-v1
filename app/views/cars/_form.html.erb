@@ -1,4 +1,6 @@
-<%= form_for(@car) do |f| %>
+<hr>
+<%= form_for(@car, html: {class: "form-inline", role: "form"}) do |f| %>
+
   <% if @car.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
@@ -11,22 +13,67 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%# Print the label %>
+    <%#= f.label :vin, class: "control-label col-sm-1" %>
+    <%#= f.label :model_year, class: "control-label col-sm-1" %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">VIN Year Make Model Trim</h3>
+    </div>
+    <div class="panel-body">
+
+     <div class="form-group input-group">
+        <%# Create the input %>
+        <% field_options = {"class" => "form-control", "id" => "inputVIN",  "placeholder" => "VIN"} %>    
+        <%= f.text_field :vin, field_options %>
+        <span class="input-group-btn">
+          <button class="btn btn-default skinny-button" type="button" id="vin-lookup-button" >
+            <span class="glyphicon glyphicon-cloud-download"></span></button>
+        </span>
+
+    </div>
+    <div class="form-group input-group" >
+      <%= f.text_field :model_year, class: "form-control", placeholder: "Year", size: "4" %>
+      <span class="input-group-btn">
+        <button class="btn btn-default skinny-button" type="button" id="year-lookup-button" data-toggle="modal" data-target="#YearPickModal">
+          <span class="glyphicon glyphicon-chevron-down"></span></button>
+      </span>
+    </div>
+    <%#
+    <div class="form-group">
+      <%= f.select :model_year, options_for_select( @model_years), class: "form-control" %>
+    <%# </div> %>
+    <div class="form-group input-group">
+      <%= f.text_field :model_make, class: "form-control", placeholder: "Make", size: "12" %>
+      <span class="input-group-btn">
+        <button class="btn btn-default skinny-button" type="button" id="make-lookup-button" data-toggle="modal" data-target="#MakePickModal">
+          <span class="glyphicon glyphicon-chevron-down"></span></button>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_field :model, class: "form-control", placeholder: "Model", size: "12" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :model_trim, class: "form-control", placeholder: "Trim" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :vin %><br>
-    <%= f.text_field :vin %>
-  </div>
-  <div class="field">
-    <%= f.label :license_state %><br>
-    <%= f.text_field :license_state %>
-  </div>
-  <div class="field">
-    <%= f.label :license_number %><br>
-    <%= f.text_field :license_number %>
-  </div>
+</div>
+
+
+  <fieldset>
+    <legend> License </legend>
+    <div class="form-group">
+      <%= f.label :license_state %><br>
+      <%= f.text_field :license_state %>
+      <%= f.select :license_state, options_for_select( @state_select_options ) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :license_number %><br>
+      <%= f.text_field :license_number %>
+    </div>
+  </fieldset> 
+
   <div class="field">
     <%= f.label :distance_unit %><br>
     <%= f.text_field :distance_unit %>
@@ -35,26 +82,12 @@
     <%= f.label :fuel_unit %><br>
     <%= f.text_field :fuel_unit %>
   </div>
+
   <div class="field">
     <%= f.label :location_id %><br>
     <%= f.text_field :location_id %>
   </div>
-  <div class="field">
-    <%= f.label :model_year %><br>
-    <%= f.text_field :model_year %>
-  </div>
-  <div class="field">
-    <%= f.label :model_make %><br>
-    <%= f.text_field :model_make %>
-  </div>
-  <div class="field">
-    <%= f.label :model %><br>
-    <%= f.text_field :model %>
-  </div>
-  <div class="field">
-    <%= f.label :model_trim %><br>
-    <%= f.text_field :model_trim %>
-  </div>
+
   <div class="field">
     <%= f.label :vehicle_type %><br>
     <%= f.text_field :vehicle_type %>
@@ -77,5 +110,54 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+    <%= "<input type='hidden' id='edmunds_api_key' value='#{Rails.application.secrets.edmunds_api_key}'>".html_safe %>
   </div>
+
 <% end %>
+
+  
+<!-- Modal window for picking the year -->
+<div class="modal" id="YearPickModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Year</h4>
+      </div>
+      <div class="modal-body">
+        <div class="decades">
+          <% @model_years.each do |year| %>
+            <% if year == @model_years.first || year.to_s[3] == '0'%>
+              <div class="decade">
+            <% end %>
+            <%= "<a href='#{year}'>#{year}</a>".html_safe %>
+            <% if year.to_s[3] == '1' %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Needed Year Is Not Displayed Above</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal window for picking the make and model -->
+<div class="modal" id="MakePickModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="MakePickModalLabel">Test</h4>
+      </div>
+      <div class="modal-body" id="MakePickModalBody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Needed Choice Is Not Displayed Above</button>
+      </div>
+    </div>
+  </div>
+</div>

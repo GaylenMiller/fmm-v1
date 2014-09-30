@@ -15,10 +15,11 @@
  */
 
 // Import the colors.
-@import 'kuler_sandy_stone_beach';
+// @import 'kuler_sandy_stone_beach';
+@import 'kuler_retro_gas_nozzle';
 
 // ** Background color for `<body>`.
-$body-bg: $kuler2;
+$body-bg: $kuler4;
 
 $navbar-default-color:  $kuler3;
 $navbar-default-link-hover-color: 	lighten($kuler3, 30%);
@@ -33,7 +34,7 @@ $navbar-default-bg: $kuler5;
 
 .navbar-wrapper {
 	padding-top: 30px;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 }
 .navbar-brand {
 	position: relative;
@@ -41,14 +42,31 @@ $navbar-default-bg: $kuler5;
 	font-size: 28px;
 
 }
-.main-panel {
-	background-color: $kuler1;
-	border-color: $kuler5;
+.main-panel, .advertising-panel, .car-panel {
+	background-color: $kuler3;
+	border-color: $kuler1;
 	border-top-style: solid;
 	border-top-width: 1rem;
 	border-radius: 1rem;
 	padding-bottom: 20px;
+
 }
+.skinny-button {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+#YearPickModal .modal-content {
+	width: 60ex;
+}
+.modal-body .decade {
+	float: left;
+    width: 6ex;
+}
+.modal-body .decades {
+	height: 15em;
+}
+
+
 
 //#error_explanation {
 //	background-color: $kuler3;

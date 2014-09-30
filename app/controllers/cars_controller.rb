@@ -1,6 +1,7 @@
 class CarsController < ApplicationController
   before_action :authenticate_user! #, only: [:new, :create]
   before_action :set_car, only: [:show, :edit, :update, :destroy]
+  before_action :model_years_create, only: [:new, :edit, :create]
 
   # GET /cars
   # GET /cars.json
@@ -26,6 +27,9 @@ class CarsController < ApplicationController
   # POST /cars.json
   def create
     @car = Car.new(car_params)
+
+    # Set the user id the currently signed in user.
+    car.user_id = current_user
 
     respond_to do |format|
       if @car.save
@@ -68,8 +72,19 @@ class CarsController < ApplicationController
       @car = Car.find(params[:id])
     end
 
+    def model_years_create
+      @model_years = []
+      (Date.today.year+1).downto(1931).each do |year|
+        @model_years << year
+      end
+      
+      @state_select_options =  [['California', 'CA'], ['Oregon', 'OR']]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
-      params.require(:car).permit(:user_id, :vin, :license_state, :license_number, :distance_unit, :fuel_unit, :location_id, :model_year, :model_make, :model, :model_trim, :vehicle_type, :engine, :drive_type, :body_style, :doors)
+      params.require(:car).permit(:user_id, :vin, :license_state, :license_number,
+       :distance_unit, :fuel_unit, :location_id,
+       :model_year, :model_make, :model, :model_trim, :vehicle_type, :engine, :drive_type, :body_style, :doors)
     end
 end

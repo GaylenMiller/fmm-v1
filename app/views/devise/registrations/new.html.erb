@@ -12,53 +12,40 @@
   <% end %>
 
 
-  <div class="form-group">  
-    <%= f.label :first_name, class: "control-label col-md-3" %>
-    <div class="col-sm-6">
-      <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
-    </div>
-  </div>
+  <% @new_user_columns.each do |col| %>
+    <div class="form-group">
 
-  <div class="form-group">  
-    <%= f.label :last_name, class: "control-label col-md-3" %>
-    <div class="col-sm-6">
-      <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
-    </div>
-  </div>
+      <%# Print the label %>
+      <%= f.label col, class: "control-label col-sm-3" %>
 
-  <div class="form-group">  
-    <%= f.label :display_name, class: "control-label col-md-3" %>
-    <div class="col-sm-6">
-      <%= f.text_field :display_name, autofocus: true, class: "form-control" %>
+      <%# Create the input %>
+      <div class="col-sm-4">
+        <% field_options = {"class" => "form-control"} %>
+        <%= case col 
+        when :first_name
+          field_options["autofocus"] = "true" 
+          f.text_field col, field_options
+        when :email
+          f.email_field col, field_options
+        when :password
+          field_options["autocomplete"] = "off"
+          if @validatable
+            field_options.merge!( {"data-toggle" => "tooltip", "data-placement" => 'right', "title" => "#{@minimum_password_length} characters minimum" } )
+          end
+          f.password_field col, field_options
+        when :password_confirmation
+          field_options["autocomplete"] = "off"
+          f.password_field col, field_options
+        else
+          f.text_field col, field_options
+        end
+        %>
+      </div>
     </div>
-  </div>
-
-  <div class="form-group">  
-    <%= f.label :email, class: "control-label col-md-3" %>
-    <div class="col-sm-6">
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">  
-    <%= f.label :password, class: "control-label col-md-3" %>
-    <% if @validatable %>
-      <i>(<%= @minimum_password_length %> characters minimum)</i>
-    <% end %>
-    <div class="col-sm-6">
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">  
-    <%= f.label :password_confirmation, class: "control-label col-md-3" %>
-    <div class="col-sm-6">
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-    </div>
-  </div>
+  <% end %>
 
   <div class="form-group">
-    <div class="col-md-offset-3 col-md-6">
+    <div class="col-sm-offset-3 col-sm-4">
       <%= f.submit "Sign up", class: "btn btn-default" %>
     </div>
   </div>

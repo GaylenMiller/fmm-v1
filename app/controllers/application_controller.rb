@@ -12,5 +12,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :last_name
     devise_parameter_sanitizer.for(:sign_up) << :display_name
 
+    @new_user_columns = [:first_name, :last_name, :display_name, :email,
+      :password, :password_confirmation]
+
   end
 end

@@ -2,7 +2,7 @@
      this code also requires the "bootstrap_class_for() helper " %>
 <% flash.each do |type, message| %>
   <div class="alert <%= bootstrap_class_for(type) %> fade in">
-    <button class="close" data-dismiss="alert">×</button>
+    <button class="close" data-dismiss="alert"> <span class="glyphicon glyphicon-remove"></span></button>
     <%= message %>
   </div>
 <% end %>

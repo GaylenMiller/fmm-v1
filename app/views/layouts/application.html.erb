@@ -14,15 +14,24 @@
 	<%# Bootstrap formating %>
     <div class="container-fluid">
     	<div class="row">
-    		<div class="col-md-offset-1 col-md-10">
-				<%# flash-messages-partial %>
-				<%= render 'layouts/flash_messages' %>
+    		<div class="col-md-offset-2 col-md-8">
+				  <%# flash-messages-partial %>
+				  <%= render 'layouts/flash_messages' %>
+        </div>
 			</div>
-    		<div class="col-md-offset-1 col-md-10 main-panel">
+      <div class="row">
+        <div class="col-md-2 car-panel">
+          cars
+        </div>
+        <div class="col-md-8 main-panel">
 
-				<%= yield %>
-			</div>
-		</div>
-    </div>		
+			   <%= yield %>
+		    </div>
+        <div class="col-md-2 advertising-panel">
+          ads
+        </div>
+      </div>
+    </div>
+  </div>		
 </body>
 </html>
